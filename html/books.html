@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books - Mooney's Publishers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-buttons a {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-btn {
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background-color: white;
+            color: #1e3a8a;
+        }
+        
+        .signup-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .books-section {
+            padding: 3rem 0;
+            flex: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e3a8a;
+            font-size: 2.2rem;
+        }
+        
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+        
+        .book-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .book-cover {
+            width: 100%;
+            height:200px;
+            object-fit: cover;
+            background-color: #bfdbfe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            overflow:hidden;
+        }
+
+        
+         .book-cover img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+         }
+
+        .book-info {
+            padding: 1.2rem;
+        }
+        
+        .book-title {
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .book-author {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .book-price {
+            font-weight: bold;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+
+        .buy-btn {
+    background-color: #bfdbfe;
+    color: #1e40af;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #e0f2fe;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #e0f2fe;
+        }
+
+        @media (max-width: 1200px) {
+            .books-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .books-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .books-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .books-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i> Quillers Book Store
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="login-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#" class="signup-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="books-section">
+        <section class="books-section">
+            <div class="container">
+                <h2 class="section-title">Our Book Collection</h2>
+                <div class="books-container">
+                    
+                    <div class="book-column">
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/galaxtic.jpg" alt="Galactic Odyssey"></div>                        
+                            <div class="book-info">
+                                <h3 class="book-title">Galactic Odyssey</h3>
+                                <p class="book-author">Mercy Kariuki</p>
+                                <p class="book-price">KSh 1850</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/echoes.jpg" alt="Echoes of The Past"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Echoes of the Past</h3>
+                                <p class="book-author">Sarah Johnson</p>
+                                <p class="book-price">KSh 1650</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/silentecho.jpg" alt="The Silent Echo"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Silent Echo</h3>
+                                <p class="book-author">Thomas Schmidt</p>
+                                <p class="book-price">KSh 1450</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/bioofbelief.jpg" alt="The Biology of belief"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Biology of belief</h3>
+                                <p class="book-author">Michael Kiprop</p>
+                                <p class="book-price">KSh 1750</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/dragon.jpg" alt="Realm of Dragons"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Realm of Dragons</h3>
+                                <p class="book-author">Grace Njoroge</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="book-column">
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/epitomy.jpg" alt="Epitomy of Love"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Epitomy of Love</h3>
+                                <p class="book-author">Ngozi Okafor</p>
+                                <p class="book-price">KSh 1500</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/epitomy.jpg" alt="Gone By Midnight"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Gone By Midnight</h3>
+                                <p class="book-author">Carlos Gonzalez</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/asylum.jpg" alt="Asylum"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Asylum</h3>
+                                <p class="book-author">John Otieno</p>
+                                <p class="book-price">KSh 1700</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/freedom.jpg" alt="Walk To Freedom"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Walk To Freedom</h3>
+                                <p class="book-author">Irene Mutua</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/startup.jpg" alt="Lean Startup"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Lean Startup</h3>
+                                <p class="book-author">Kwame Osei</p>
+                                <p class="book-price">KSh 2000</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="book-column">
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/habits2.jpg" alt="The 7 Habits"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The 7 Habits</h3>
+                                <p class="book-author">Duncan Ochilu</p>
+                                <p class="book-price">KSh 1800</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/milk.jpg" alt="Milk & Honey"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Milk & Honey</h3>
+                                <p class="book-author">Balinda Dembe</p>
+                                <p class="book-price">KSh 1350</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/art.jpg" alt="Story Of Art"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Story Of Art</h3>
+                                <p class="book-author">Ann Wambua</p>
+                                <p class="book-price">KSh 2500</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/bonvoyage.jpg" alt="Bon Voyage"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Bon Voyage</h3>
+                                <p class="book-author">Oliver Martin</p>
+                                <p class="book-price">KSh 1750</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/pot.jpg" alt="Heat of A Pot"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Heat of A Pot</h3>
+                                <p class="book-author">Hassan Farah</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                    
+                    </div>
+        
+                    <div class="book-column">
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/sleep.jpg" alt="Why We Sleep"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Why We Sleep</h3>
+                                <p class="book-author">Sarah Mugo</p>
+                                <p class="book-price">KSh 1750</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/buffalo.jpg" alt="The Buffalo"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Buffalo</h3>
+                                <p class="book-author">Peter Gitonga</p>
+                                <p class="book-price">KSh 1250</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/fallstars.jpg" alt="Fall From The Stars"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Fall From The Stars</h3>
+                                <p class="book-author">David Kamau</p>
+                                <p class="book-price">KSh 1550</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                       <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/godfather.jpg" alt="The Godfather"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Godfather</h3>
+                                <p class="book-author">Omar Abdul</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/meditation.jpg" alt="Meditations"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Meditations</h3>
+                                <p class="book-author">Paul Okello</p>
+                                <p class="book-price">KSh 1650</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="book-column">
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/alchemist.jpg" alt="The Alchemist"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Alchemist</h3>
+                                <p class="book-author">Nelson Ndatja</p>
+                                <p class="book-price">KSh 1650</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/sports.jpg" alt="Indoor Sports"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Indoor Sports</h3>
+                                <p class="book-author">Priya Patel</p>
+                                <p class="book-price">KSh 1950</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/innovators.jpg" alt="The Innovators"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">The Innovators</h3>
+                                <p class="book-author">Marco Suarez</p>
+                                <p class="book-price">KSh 2100</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/spring.jpg" alt="Silent Spring"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Silent Spring</h3>
+                                <p class="book-author">Mohammed Abdullah</p>
+                                <p class="book-price">KSh 1750</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                                </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-cover"><img src="../pictures/pride.jpg" alt="Pride & Prejudice"></div>
+                            <div class="book-info">
+                                <h3 class="book-title">Pride & Prejudice</h3>
+                                <p class="book-author">Li Zhang</p>
+                                <p class="book-price">KSh 1550</p>
+                                <button class="buy-btn">
+                                    Add to Cart </button>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quillers Book Store</h3>
+                    <p>Bringing quality literature to readers since 1985. Our mission is to support authors and connect them with their audience.</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 423 Book Avenue, Karen, Nairobi</li>
+                        <li><i class="fas fa-envelope"></i> info@mooneys.com</li>
+                        <li><i class="fas fa-phone"></i> 0722537892</li>
+                        <li><i class="fas fa-phone"></i> 0725784624</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Quillers Book Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

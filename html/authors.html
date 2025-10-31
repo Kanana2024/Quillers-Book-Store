@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authors - Mooney's Publishers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-buttons a {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-btn {
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background-color: white;
+            color: #1e3a8a;
+        }
+        
+        .signup-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .authors-section {
+            padding: 3rem 0;
+            flex: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e3a8a;
+            font-size: 2.2rem;
+        }
+        
+        .author-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+        
+        .author-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .author-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .author-profile {
+            width: 100%;
+            height:200px;
+            object-fit: cover;
+            background-color: #bfdbfe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            overflow:hidden;
+        }
+
+        
+         .author-profile img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+         }
+
+        .author-info {
+            padding: 1.2rem;
+        }
+        
+        .author-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .author-department {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .author-nationality {
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #e0f2fe;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #e0f2fe;
+        }
+
+        @media (max-width: 1200px) {
+            .books-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .books-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .author-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .author-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i> Quillers Book Store
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="customerlogin.html" class="login-btn">Login</a>
+                <a href="customersignup.html" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="author-section">
+        <section class="author-section">
+            <div class="container">
+                <h2 class="section-title">Our Authors</h2>
+                <div class="author-container">
+                    
+                    <div class="author-column">
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/jameswil.jpg" alt="James Wilson"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">James Wilson</h3>
+                                <p class="author-department">Philosophy</p>
+                                <p class="author-nationality">British</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/lizhang.jpg" alt="Li Zhang"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Li Zhang</h3>
+                                <p class="author-department">Classics</p>
+                                <p class="author-nationality">Chinese</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/michael.jpg" alt="Michael Kiprop"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Michael Kiprop</h3>
+                                <p class="author-department">Science</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/lilian.jpg" alt="Lilian Langat"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Lilian Langat</h3>
+                                <p class="author-department">Crime</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/priya.jpg" alt="Priya Patel"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Priya Patel</h3>
+                                <p class="author-department">Sports</p>
+                                <p class="author-nationality">Indian</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+        
+                    <div class="author-column">
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/juan.jpg" alt="Juan Rodriguez"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Juan Rodriguez</h3>
+                                <p class="author-department">Environment</p>
+                                <p class="author-nationality">Spanish</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/abel.jpg" alt="Abel Tesfaye"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Abel Tesfaye</h3>
+                                <p class="author-department">Travel</p>
+                                <p class="author-nationality">Ethiopian</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/kwame.jpg" alt="Kwame Boateng"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Kwame Boateng</h3>
+                                <p class="author-department">Business</p>
+                                <p class="author-nationality">Ghanaian</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/aisha.jpg" alt="Aisha Ibrahim"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Aisha Ibrahim</h3>
+                                <p class="author-department">Sci-Fi</p>
+                                <p class="author-nationality">Nigerian</p>
+                            </div>
+                        </div>
+                         <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/fatima.jpg" alt="Fatima Benali"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Fatima Benali</h3>
+                                <p class="author-department">Children</p>
+                                <p class="author-nationality">Morrocan</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+        
+                    <div class="author-column">
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/nadia.jpg" alt="Nadia Al-mansoori"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Nadia Al-mansoori</h3>
+                                <p class="author-department">Horror</p>
+                                <p class="author-nationality">Emirati</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/daniel.jpg" alt="Daniel Mensa"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Daniel Mensa</h3>
+                                <p class="author-department">History</p>
+                                <p class="author-nationality">Ghanaian</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/thomas.jpg" alt="Thomas shcmidt"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Thomas shcmidt</h3>
+                                <p class="author-department">Mystery</p>
+                                <p class="author-nationality">German</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/aminajuma.jpg" alt="Amina Juma"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Amina Juma</h3>
+                                <p class="author-department">Art</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/elena.jpg" alt="Elena Petrova"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Elena Petrova</h3>
+                                <p class="author-department">Biography</p>
+                                <p class="author-nationality">Russian</p>
+                            </div>
+                        </div>
+
+                    </div>
+        
+                    <div class="author-column">
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/lucy.jpg" alt="Lucy Ongiel"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Lucy Ongiel</h3>
+                                <p class="author-department">Poetry</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                       <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/esther.jpg" alt="Esther Atieno"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Esther Atieno</h3>
+                                <p class="author-department">Cooking</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/joseph.jpg" alt="Joseph Ndung'u"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Joseph Ndung'u</h3>
+                                <p class="author-department">Romance</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/luka.jpg" alt="Luka Ricci"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Luka Ricci</h3>
+                                <p class="author-department">Fantasy</p>
+                                <p class="author-nationality">Italian</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/samuel.jpg" alt="Samuel Ngugi"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Samuel Ngugi</h3>
+                                <p class="author-department">Thriller</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="author-column">
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/davidmwangi.jpg" alt="David Mwangi"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">David Mwangi</h3>
+                                <p class="author-department">Youth</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/sicily.jpg" alt="Sicily Petronova"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Sicily Petronova</h3>
+                                <p class="author-department">Religion</p>
+                                <p class="author-nationality">Russian</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/joe.jpg" alt="Joe Kuriara"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Joe Kuriara</h3>
+                                <p class="author-department">Self-Help</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/luce.jpg" alt="Luce Khumalo"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Luce Khumalo</h3>
+                                <p class="author-department">Technology</p>
+                                <p class="author-nationality">South African </p>
+                            </div>
+                        </div>
+                        <div class="author-card">
+                            <div class="author-profile"><img src="../pictures/clide.jpg" alt="Clide Ngugi"></div>                        
+                            <div class="author-info">
+                                <h3 class="author-name">Clide Ngugi</h3>
+                                <p class="author-department">Health</p>
+                                <p class="author-nationality">Kenyan</p>
+                            </div>
+                           </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quillers Book Store</h3>
+                    <p>Bringing quality literature to readers since 1985. Our mission is to support authors and connect them with their audience.</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 423 Book Avenue, Karen, Nairobi</li>
+                        <li><i class="fas fa-envelope"></i> info@mooneys.com</li>
+                        <li><i class="fas fa-phone"></i> 0722537892</li>
+                        <li><i class="fas fa-phone"></i> 0725784624</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Quillers Book Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

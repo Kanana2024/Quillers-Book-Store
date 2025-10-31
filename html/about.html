@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>About Us - Mooney's Publishers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+ 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #0b0000;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.auth-buttons a {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-btn {
+    color: white;
+    border: 1px solid white;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: white;
+    color: #1e3a8a;
+}
+
+.signup-btn:hover {
+    background-color: #f0f0f0;
+}
+       
+        .page-header {
+            background:linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), 
+            url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        
+        .section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1e3a8a;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .two-column > div {
+            flex: 1;
+        }
+        
+        .about-image {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             width: 100%;
+             max-width: 600px; 
+             margin: 0 auto; 
+             border-radius: 8px;
+             overflow: hidden;
+         }
+
+        .about-image img {
+             width: 100%; 
+             height: auto; 
+             display: block;
+              border-radius: 8px;
+         }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-photo {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e2e8f0;
+        }
+
+        .member-photo img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+
+        .awards-list {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+        
+        .award-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+        
+        .award-icon {
+            color: #3b82f6;
+            font-size: 1.5rem;
+        }
+        
+        .locations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .location {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            color: white;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+    
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i> Quillers Book Store
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="customerlogin.html" class="login-btn">Login</a>
+                <a href="customersignup.html" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    
+
+
+    <section class="page-header">
+        <div class="container">
+            <h1>About Our Book Store</h1>
+            <p>Discover our story, team, and values</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">Our History</h2>
+            <div class="two-column">
+                <div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error minus nobis itaque, atque nemo provident non vitae cupiditate inventore quaerat! Necessitatibus quo quidem illum, nulla modi fugiat assumenda deleniti odio!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores facilis nesciunt, officiis ipsa aliquid at dolores doloremque laboriosam reprehenderit cum. Repellat qui iure error nobis provident odio dolores voluptatum eligendi.</p>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus maxime officiis porro repudiandae sapiente placeat incidunt recusandae. Molestias nisi neque, fuga similique iure adipisci aliquam aperiam nobis, eius, culpa repellendus?</p>
+                    </div>
+                <div class="about-image">
+                    <img src="office.jpg" alt="Our first office">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="elias.jpg" alt="Elias Mooney">
+                    </div>
+
+                    <h3>Elias Mooney</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                      <img src="james.jpg" alt="James Kariuki">
+                    </div>
+                    <h3>James Kariuki</h3>
+                    <p>Editorial Director</p>
+                  </div>
+                  
+                  <div class="team-member">
+                    <div class="member-photo">
+                      <img src="amina.jpg" alt="Amina Mohammed">
+                    </div>
+                    <h3>Amina Mohammed</h3>
+                    <p>Marketing Director</p>
+                  </div>
+                  
+                  <div class="team-member">
+                    <div class="member-photo">
+                      <img src="david.jpg" alt="David Omondi">
+                    </div>
+                    <h3>David Omondi</h3>
+                    <p>Operations Director</p>
+                  </div>
+                  
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Awards</h2>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-icon"><i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h3>African Booker Prize 2018</h3>
+                        <p>For "Milk & Honey"</p>
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon"><i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                       <h3>Publisher of the Year 2020</h3>
+                        <p>African Publishers Network</p>
+
+                    </div>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon"><i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h3>Literary Excellence Award 2022</h3>
+                        <p>Kenya Publishers Association</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Locations</h2>
+            <div class="locations">
+                <div class="location">
+                  <h3>Nairobi,HQ</h3>
+                  <p>423 Book Avenue, Karen</p>
+                 <p>+254722537892</p>
+
+                </div>
+                <div class="location">
+                    <h3>Kampala</h3>
+                    <p>15 Literature Road, Kololo</p>
+                    <p>+256414123456</p>
+
+                </div>
+                <div class="location">
+                    <h3>London</h3>
+                    <p>7 Runway Lane, Bloomsbury</p>
+                    <p>+442079460958</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@mooneys.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                  <p>+254 722 537 892</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                   <p>423 Book Avenue, Karen, Nairobi</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Quillers Book Store</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p>&copy; 2025 All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

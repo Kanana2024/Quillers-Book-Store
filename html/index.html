@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mooney's Publishers - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            flex-direction: column;
+         }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .auth-buttons a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .login-btn {
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .signup-btn {
+            background-color: white;
+            color: #1e3a8a;
+        }
+        
+        .signup-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: white;
+            color: #1e3a8a;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #f0f0f0;
+        }
+    
+        .featured {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1e3a8a;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .book-card {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .book-cover {
+            height: 280px;
+            background-color: #bfdbfe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            
+        }
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(30, 58, 138, 0.1), rgba(30, 58, 138, 0.3));
+        }
+        
+        .book-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .book-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1e3a8a;
+            font-size: 1.2rem;
+        }
+        
+        .book-info p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+        }
+        
+        .contact-section {
+            padding: 4rem 0;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 {
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .submit-btn {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 4rem 0 1.5rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background-color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #e0f2fe;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-column p {
+            color: #e0f2fe;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #e0f2fe;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form button {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>Quillers Book Store
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                    <a href="customerlogin.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="customersignup.html" class="signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Your Next Favorite Book</h1>
+            <p>Quillers Book Store brings you the finest collection of literature from emerging and established authors worldwide.</p>
+            <a href="books.html" class="cta-btn">Browse Our Collection</a>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">New Releases</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover"><img src="echoes.jpg" alt="Echoes of The Past"></div>
+                    <div class="book-info">
+                        <h3>Echoes of The Past</h3>
+                        <p>Sarah Johnson</p>
+                        <p class="price">KSh 1450</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover"><img src="epitomy.jpg" alt="Epitomy of Love"></div>
+                    <div class="book-info">
+                        <h3>Epitomy of Love</h3>
+                        <p>Ngozi Okafor</p>
+                        <p class="price">KSh 1500</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover"><img src="buffalo.jpg" alt="The Buffalo"></div>
+                    <div class="book-info">
+                        <h3>The Buffalo</h3>
+                        <p>Peter Gitonga</p>
+                        <p class="price">KSh 1250</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover"><img src="art.jpg" alt="Story of art"></div>
+                    <div class="book-info">
+                        <h3>Story of art</h3>
+                        <p>Ann Wambua</p>
+                        <p class="price">KSh 2500</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h3 class="section-title">Leave a Message</h3>
+    <form action="inquiries.php" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="inqname" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="subject" id="subject" name="inqsubject" placeholder="Order Shipment" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+</div>
+</section>
+<br>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quillers Book Store</h3>
+                    <p>Bringing quality literature to readers since 1985. Our mission is to support authors and connect them with their audience.</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>Location</li>
+                        <li><i class="fas fa-envelope"></i> email</li>
+                        <li><i class="fas fa-phone"></i> Phone</li>
+                        <li><i class="fas fa-phone"></i> Phone</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Quillers Book Store. All rights reserved.</p>
+                        </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,279 @@
+edit it - <!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Sign Up - Mooney's Publishers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)),
+            url('https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            color: #333;
+            background-size: cover;
+            background-position: center;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .auth-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
+            padding: 3rem 0;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-title {
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .auth-form input,
+        .auth-form select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .auth-form input:focus,
+        .auth-form select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .auth-submit:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #64748b;
+        }
+
+        .auth-switch a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 2rem 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #e0f2fe;
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-book-open"></i>Quillers Book Store
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
+                        <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                    </ul>
+                </nav>
+    </header>
+
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <h1 class="auth-title">Create Your Account</h1>
+
+                <form class="auth-form" method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="custname"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="mobile" id="mobile" name="mobile" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div class="gender-options">
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="male" required> Male
+                            </label>
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="female"> Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="custpassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirmpassword"required>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign Up</button>
+                    <div class="auth-switch">
+                        Already have an account? <a href="customerlogin.html">Log in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">&copy; 2025 Quillers Book Store. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
