@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Books - Mooney's Publishers</title>
+    <title>Books - Quiller's Bookstore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -253,14 +254,57 @@
         .social-icons a:hover {
             transform: translateY(-3px);
         }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #e0f2fe;
-        }
+        .search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border-radius: 30px;
+  padding: 0.4rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.search-form:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  padding: 0.5rem;
+  color: #333;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-btn {
+  background: #2a72de;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #1e56a0;
+}
+
+.search-btn i {
+  font-size: 1rem;
+}
+        .auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
         @media (max-width: 1200px) {
             .books-container {
@@ -314,16 +358,22 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
-            <div class="auth-buttons">
-                <a href="#" class="login-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="#" class="signup-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
-            </div>
+    <div class="auth-buttons">
+       
+        <a href="#" class="login-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+
+        <form method="get" action="{% url 'book_search' %}" class="search-form">
+        <input type="text" name="q" placeholder="Search books..." class="search-input">
+        <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+
         </div>
     </header>
 
@@ -335,50 +385,50 @@
                     
                     <div class="book-column">
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/galaxtic.jpg" alt="Galactic Odyssey"></div>                        
+                            <div class="book-cover"><img src="../static/galaxtic.jpg" alt="Galactic Odyssey"></div>                        
                             <div class="book-info">
                                 <h3 class="book-title">Galactic Odyssey</h3>
-                                <p class="book-author">Mercy Kariuki</p>
+                                <p class="book-author">Aisha Zainab</p>
                                 <p class="book-price">KSh 1850</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/echoes.jpg" alt="Echoes of The Past"></div>
+                            <div class="book-cover"><img src="../static/echoes.jpg" alt="Echoes of The Past"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Echoes of the Past</h3>
-                                <p class="book-author">Sarah Johnson</p>
+                                <p class="book-author">Li Wei</p>
                                 <p class="book-price">KSh 1650</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/silentecho.jpg" alt="The Silent Echo"></div>
+                            <div class="book-cover"><img src="../static/echoes.jpg" alt="The Silent Echo"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Silent Echo</h3>
-                                <p class="book-author">Thomas Schmidt</p>
+                                <p class="book-author">Thomas Heinrich</p>
                                 <p class="book-price">KSh 1450</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/bioofbelief.jpg" alt="The Biology of belief"></div>
+                            <div class="book-cover"><img src="../static/bioofbelief.jpg" alt="The Biology of belief"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Biology of belief</h3>
-                                <p class="book-author">Michael Kiprop</p>
+                                <p class="book-author">Michael Kiplagat</p>
                                 <p class="book-price">KSh 1750</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/dragon.jpg" alt="Realm of Dragons"></div>
+                            <div class="book-cover"><img src="../static/dragon.jpg" alt="Realm of Dragons"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Realm of Dragons</h3>
-                                <p class="book-author">Grace Njoroge</p>
+                                <p class="book-author">Nadia Fatima</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
@@ -388,50 +438,50 @@
         
                     <div class="book-column">
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/epitomy.jpg" alt="Epitomy of Love"></div>
+                            <div class="book-cover"><img src="../static/epitomy.jpg" alt="Epitomy of Love"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Epitomy of Love</h3>
-                                <p class="book-author">Ngozi Okafor</p>
+                                <p class="book-author">Joseph Maina</p>
                                 <p class="book-price">KSh 1500</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/epitomy.jpg" alt="Gone By Midnight"></div>
+                            <div class="book-cover"><img src="../static/midnight.jpg" alt="Gone By Midnight"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Gone By Midnight</h3>
-                                <p class="book-author">Carlos Gonzalez</p>
+                                <p class="book-author">Samuel Kariuki</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/asylum.jpg" alt="Asylum"></div>
+                            <div class="book-cover"><img src="../static/asylum.jpg" alt="Asylum"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Asylum</h3>
-                                <p class="book-author">John Otieno</p>
+                                <p class="book-author">Lilian Chepkorir</p>
                                 <p class="book-price">KSh 1700</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/freedom.jpg" alt="Walk To Freedom"></div>
+                            <div class="book-cover"><img src="../static/freedom.jpg" alt="Walk To Freedom"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Walk To Freedom</h3>
-                                <p class="book-author">Irene Mutua</p>
+                                <p class="book-author">Daniel Kwabena</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/startup.jpg" alt="Lean Startup"></div>
+                            <div class="book-cover"><img src="../static/startup.jpg" alt="Lean Startup"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Lean Startup</h3>
-                                <p class="book-author">Kwame Osei</p>
+                                <p class="book-author">Kwame Nkrumah</p>
                                 <p class="book-price">KSh 2000</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
@@ -441,50 +491,50 @@
         
                     <div class="book-column">
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/habits2.jpg" alt="The 7 Habits"></div>
+                            <div class="book-cover"><img src="../static/habits2.jpg" alt="The 7 Habits"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The 7 Habits</h3>
-                                <p class="book-author">Duncan Ochilu</p>
+                                <p class="book-author">Joe Mutahi</p>
                                 <p class="book-price">KSh 1800</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/milk.jpg" alt="Milk & Honey"></div>
+                            <div class="book-cover"><img src="../static/milk.jpg" alt="Milk & Honey"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Milk & Honey</h3>
-                                <p class="book-author">Balinda Dembe</p>
+                                <p class="book-author">Sicily Anastacia</p>
                                 <p class="book-price">KSh 1350</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/art.jpg" alt="Story Of Art"></div>
+                            <div class="book-cover"><img src="../static/art.jpg" alt="Story Of Art"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Story Of Art</h3>
-                                <p class="book-author">Ann Wambua</p>
+                                <p class="book-author">Amina Naliaka</p>
                                 <p class="book-price">KSh 2500</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/bonvoyage.jpg" alt="Bon Voyage"></div>
+                            <div class="book-cover"><img src="../static/bonvoyage.jpg" alt="Bon Voyage"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Bon Voyage</h3>
-                                <p class="book-author">Oliver Martin</p>
+                                <p class="book-author">Clide Ngugi</p>
                                 <p class="book-price">KSh 1750</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/pot.jpg" alt="Heat of A Pot"></div>
+                            <div class="book-cover"><img src="../static/pot.jpg" alt="Heat of A Pot"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Heat of A Pot</h3>
-                                <p class="book-author">Hassan Farah</p>
+                                <p class="book-author">Esther Akinyi</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
@@ -495,27 +545,27 @@
         
                     <div class="book-column">
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/sleep.jpg" alt="Why We Sleep"></div>
+                            <div class="book-cover"><img src="../static/sleep.jpg" alt="Why We Sleep"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Why We Sleep</h3>
-                                <p class="book-author">Sarah Mugo</p>
+                                <p class="book-author">James Edward</p>
                                 <p class="book-price">KSh 1750</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/buffalo.jpg" alt="The Buffalo"></div>
+                            <div class="book-cover"><img src="../static/buffalo.jpg" alt="The Buffalo"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Buffalo</h3>
-                                <p class="book-author">Peter Gitonga</p>
+                                <p class="book-author">Juan Carlos</p>
                                 <p class="book-price">KSh 1250</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/fallstars.jpg" alt="Fall From The Stars"></div>
+                            <div class="book-cover"><img src="../static/fallstars.jpg" alt="Fall From The Stars"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Fall From The Stars</h3>
                                 <p class="book-author">David Kamau</p>
@@ -525,20 +575,20 @@
                             </div>
                         </div>
                        <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/godfather.jpg" alt="The Godfather"></div>
+                            <div class="book-cover"><img src="../static/godfather.jpg" alt="The Godfather"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Godfather</h3>
-                                <p class="book-author">Omar Abdul</p>
+                                <p class="book-author">Luka Matteo</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/meditation.jpg" alt="Meditations"></div>
+                            <div class="book-cover"><img src="../static/meditation.jpg" alt="Meditations"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Meditations</h3>
-                                <p class="book-author">Paul Okello</p>
+                                <p class="book-author">Priya Rani</p>
                                 <p class="book-price">KSh 1650</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
@@ -548,50 +598,50 @@
                     </div>
                     <div class="book-column">
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/alchemist.jpg" alt="The Alchemist"></div>
+                            <div class="book-cover"><img src="../static/alchemist.jpg" alt="The Alchemist"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Alchemist</h3>
-                                <p class="book-author">Nelson Ndatja</p>
+                                <p class="book-author">Lucy Wanjiru</p>
                                 <p class="book-price">KSh 1650</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/sports.jpg" alt="Indoor Sports"></div>
+                            <div class="book-cover"><img src="../static/sports.jpg" alt="Indoor Sports"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Indoor Sports</h3>
-                                <p class="book-author">Priya Patel</p>
+                                <p class="book-author">Lucy Wanjiru</p>
                                 <p class="book-price">KSh 1950</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/innovators.jpg" alt="The Innovators"></div>
+                            <div class="book-cover"><img src="../static/innovators.jpg" alt="The Innovators"></div>
                             <div class="book-info">
                                 <h3 class="book-title">The Innovators</h3>
-                                <p class="book-author">Marco Suarez</p>
+                                <p class="book-author">Abel Mekonnen</p>
                                 <p class="book-price">KSh 2100</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                             </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/spring.jpg" alt="Silent Spring"></div>
+                            <div class="book-cover"><img src="../static/spring.jpg" alt="Silent Spring"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Silent Spring</h3>
-                                <p class="book-author">Mohammed Abdullah</p>
+                                <p class="book-author">Luce Themba</p>
                                 <p class="book-price">KSh 1750</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
                                 </div>
                         </div>
                         <div class="book-card">
-                            <div class="book-cover"><img src="../pictures/pride.jpg" alt="Pride & Prejudice"></div>
+                            <div class="book-cover"><img src="../static/pride.jpg" alt="Pride & Prejudice"></div>
                             <div class="book-info">
                                 <h3 class="book-title">Pride & Prejudice</h3>
-                                <p class="book-author">Li Zhang</p>
+                                <p class="book-author">Fatima Zahara</p>
                                 <p class="book-price">KSh 1550</p>
                                 <button class="buy-btn">
                                     Add to Cart </button>
@@ -619,24 +669,23 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
-                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                        <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="{% url 'books' %}"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="{% url 'authors' %}"><i class="fas fa-chevron-right"></i> Authors</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Account</h3>
                     <ul>
-                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
-                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
-                    </ul>
+                        <li><a href="{% url 'login' %}"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fas fa-chevron-right"></i> Sign Up</a></li>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 423 Book Avenue, Karen, Nairobi</li>
-                        <li><i class="fas fa-envelope"></i> info@mooneys.com</li>
+                        <li><i class="fas fa-envelope"></i> info@quillers.com</li>
                         <li><i class="fas fa-phone"></i> 0722537892</li>
                         <li><i class="fas fa-phone"></i> 0725784624</li>
                     </ul>

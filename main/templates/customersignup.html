@@ -1,7 +1,8 @@
-edit it - <!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Sign Up - Mooney's Publishers</title>
+    <title>Customer Sign Up - Quiller's Bookstore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -211,10 +212,10 @@ edit it - <!DOCTYPE html>
                 </a>
                 <nav>
                     <ul>
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="/about"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
-                        <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                        <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>                        
+                        <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                        <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                     </ul>
                 </nav>
     </header>
@@ -263,7 +264,7 @@ edit it - <!DOCTYPE html>
                     </div>
                     <button type="submit" class="auth-submit">Sign Up</button>
                     <div class="auth-switch">
-                        Already have an account? <a href="customerlogin.html">Log in</a>
+                        Already have an account? <a href="{% url 'login' %}">Log in</a>
                     </div>
                 </form>
             </div>

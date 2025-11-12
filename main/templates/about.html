@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
- <title>About Us - Mooney's Publishers</title>
+ <title>About Us - Quiller's Bookstore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
  
@@ -10,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        }venv\Scripts\activate
         
         body {
             background-color: #f8f9fa;
@@ -271,15 +272,15 @@ nav ul li a:hover {
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <a href="customerlogin.html" class="login-btn">Login</a>
-                <a href="customersignup.html" class="signup-btn">Sign Up</a>
+                <a href="{% url 'login' %}" class="login-btn">Login</a>
+                <a href="{% url 'register' %}" class="signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
             </div>
         </div>
     </header>
@@ -298,12 +299,12 @@ nav ul li a:hover {
             <h2 class="section-title">Our History</h2>
             <div class="two-column">
                 <div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error minus nobis itaque, atque nemo provident non vitae cupiditate inventore quaerat! Necessitatibus quo quidem illum, nulla modi fugiat assumenda deleniti odio!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores facilis nesciunt, officiis ipsa aliquid at dolores doloremque laboriosam reprehenderit cum. Repellat qui iure error nobis provident odio dolores voluptatum eligendi.</p>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus maxime officiis porro repudiandae sapiente placeat incidunt recusandae. Molestias nisi neque, fuga similique iure adipisci aliquam aperiam nobis, eius, culpa repellendus?</p>
+                    <p> Founded in 1995 in Nairobi, Quillers's Bookstore started as a small, family-run shop with a deep love for African stories. Over the past three decades, we've grown into one of the region's most trusted names in books—home to thousands of titles across every genre imaginable.</p>
+                    <p>Our mission has always been simple: to connect readers with stories that inspire, educate, and transform. From our modest beginnings to our global presence today, we remain devoted to celebrating literature and the power of imagination.</p>
+                    <p>Today, our dedicated team of works tirelessly across our stores and digital platforms to bring readers closer to more  books and many authors worldwide. At Quiller's, we believe every story deserves to be shared—and every reader deserves to find theirs.</p>
                     </div>
                 <div class="about-image">
-                    <img src="office.jpg" alt="Our first office">
+                    <img src="../static/office.jpg" alt="Our first office">
                 </div>
             </div>
         </section>
@@ -313,7 +314,7 @@ nav ul li a:hover {
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-photo">
-                        <img src="elias.jpg" alt="Elias Mooney">
+                        <img src="../static/elias.jpg" alt="Elias Mooney">
                     </div>
 
                     <h3>Elias Mooney</h3>
@@ -321,7 +322,7 @@ nav ul li a:hover {
                 </div>
                 <div class="team-member">
                     <div class="member-photo">
-                      <img src="james.jpg" alt="James Kariuki">
+                      <img src="../static/james.jpg" alt="James Kariuki">
                     </div>
                     <h3>James Kariuki</h3>
                     <p>Editorial Director</p>
@@ -329,7 +330,7 @@ nav ul li a:hover {
                   
                   <div class="team-member">
                     <div class="member-photo">
-                      <img src="amina.jpg" alt="Amina Mohammed">
+                      <img src="../static/amina.jpg" alt="Amina Mohammed">
                     </div>
                     <h3>Amina Mohammed</h3>
                     <p>Marketing Director</p>
@@ -337,7 +338,7 @@ nav ul li a:hover {
                   
                   <div class="team-member">
                     <div class="member-photo">
-                      <img src="david.jpg" alt="David Omondi">
+                      <img src="../static/david.jpg" alt="David Omondi">
                     </div>
                     <h3>David Omondi</h3>
                     <p>Operations Director</p>
@@ -361,8 +362,8 @@ nav ul li a:hover {
                     <div class="award-icon"><i class="fa-solid fa-award"></i>
                     </div>
                     <div>
-                       <h3>Publisher of the Year 2020</h3>
-                        <p>African Publishers Network</p>
+                       <h3>Business of the Year 2020</h3>
+                        <p>African Business Network</p>
 
                     </div>
                 </div>
@@ -371,7 +372,7 @@ nav ul li a:hover {
                     </div>
                     <div>
                         <h3>Literary Excellence Award 2022</h3>
-                        <p>Kenya Publishers Association</p>
+                        <p>Kenya Literacy Association</p>
 
                     </div>
                 </div>
@@ -407,7 +408,7 @@ nav ul li a:hover {
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <p>info@mooneys.com</p>
+                    <p>info@quillers.com</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>

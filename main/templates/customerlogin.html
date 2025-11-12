@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Login - Mooney's Publishers</title>
+    <title>Customer Login - Quiller's Bookstore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -168,7 +168,7 @@
 
         .forgot-password {
             text-align: right;
-            margin-top: -1rem;
+            margin-top: 1rem;
             margin-bottom: 1.5rem;
         }
 
@@ -211,10 +211,10 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
     </header>
@@ -223,23 +223,30 @@
         <div class="container">
             <div class="auth-container">
                 <h1 class="auth-title">Customer Login</h1>
-                <form class="auth-form" action="custlogin.php" method="POST">
+                <form class="auth-form" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+    
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name ="email"required>
+                        <input type="email" id="email" name="email" required>
                     </div>
+
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="custpassword" required>
+                        <label for="custpassword">Password</label>
+                        <input type="password" id="custpassword" name="custpassword" required>
+
                         <div class="forgot-password">
                             <a href="#">Forgot password?</a>
                         </div>
                     </div>
+
                     <button type="submit" class="auth-submit">Log In</button>
+
                     <div class="auth-switch">
-                        Don't have an account? <a href="customersignup.html">Sign up</a>
+                        Don't have an account? <a href="{% url 'register' %}">Sign up</a>
                     </div>
                 </form>
+
             </div>
         </div>
     </section>

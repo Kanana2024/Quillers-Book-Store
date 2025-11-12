@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mooney's Publishers - Home</title>
+    <title>Quiller's Bookstore - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -257,7 +258,7 @@
         }
         
         .contact-section {
-            padding: 4rem 0;
+            padding: 3.5rem 0;
         }
 
         .contact-container {
@@ -294,7 +295,7 @@
             flex: 1;
             min-width: 300px;
             background-color: white;
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
@@ -330,7 +331,9 @@
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
-
+        form {
+        padding: 40px; 
+        }
         .submit-btn {
             background-color: #1e3a8a;
             color: white;
@@ -485,15 +488,15 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
                     <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
             <div class="auth-buttons">
-                    <a href="customerlogin.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a href="customersignup.html" class="signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    <a href="{% url 'login' %}" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="{% url 'register' %}" class="signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
             </div>
         </div>
     </header>
@@ -502,7 +505,7 @@
         <div class="container">
             <h1>Discover Your Next Favorite Book</h1>
             <p>Quillers Book Store brings you the finest collection of literature from emerging and established authors worldwide.</p>
-            <a href="books.html" class="cta-btn">Browse Our Collection</a>
+            <a href="{% url 'books' %}" class="cta-btn">Browse Our Collection</a>
         </div>
     </section>
 
@@ -511,7 +514,7 @@
             <h2 class="section-title">New Releases</h2>
             <div class="books-grid">
                 <div class="book-card">
-                    <div class="book-cover"><img src="echoes.jpg" alt="Echoes of The Past"></div>
+                    <div class="book-cover"><img src="../static/echoes.jpg" alt="Echoes of The Past"></div>
                     <div class="book-info">
                         <h3>Echoes of The Past</h3>
                         <p>Sarah Johnson</p>
@@ -519,7 +522,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-cover"><img src="epitomy.jpg" alt="Epitomy of Love"></div>
+                    <div class="book-cover"><img src="../static/epitomy.jpg" alt="Epitomy of Love"></div>
                     <div class="book-info">
                         <h3>Epitomy of Love</h3>
                         <p>Ngozi Okafor</p>
@@ -527,7 +530,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-cover"><img src="buffalo.jpg" alt="The Buffalo"></div>
+                    <div class="book-cover"><img src="../static/buffalo.jpg" alt="The Buffalo"></div>
                     <div class="book-info">
                         <h3>The Buffalo</h3>
                         <p>Peter Gitonga</p>
@@ -535,7 +538,7 @@
                     </div>
                 </div>
                 <div class="book-card">
-                    <div class="book-cover"><img src="art.jpg" alt="Story of art"></div>
+                    <div class="book-cover"><img src="../static/art.jpg" alt="Story of art"></div>
                     <div class="book-info">
                         <h3>Story of art</h3>
                         <p>Ann Wambua</p>
@@ -547,7 +550,10 @@
         </div>
     </section>
     <h3 class="section-title">Leave a Message</h3>
-    <form action="inquiries.php" method="POST">
+    
+    <form method="POST" action="{% url 'inquiry' %}">
+       {% csrf_token %}
+       {{ form.as_p }}
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="inqname" placeholder="Your full name" required>
@@ -584,26 +590,26 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
-                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                        <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="{% url 'books' %}"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="{% url 'authors' %}"><i class="fas fa-chevron-right"></i> Authors</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Account</h3>
                     <ul>
-                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
-                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i>Location</li>
-                        <li><i class="fas fa-envelope"></i> email</li>
-                        <li><i class="fas fa-phone"></i> Phone</li>
-                        <li><i class="fas fa-phone"></i> Phone</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Karen, Nairobi</li>
+                        <li><i class="fas fa-envelope"></i>info@quillers.com</li>
+                        <li><i class="fas fa-phone"></i> 0722 537892</li>
+                        <li><i class="fas fa-phone"></i> 0722 537829</li>
                     </ul>
                 </div>
             </div>

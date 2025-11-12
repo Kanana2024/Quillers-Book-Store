@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Authors - Mooney's Publishers</title>
+    <title>Authors - Quiller's Bookstore</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -298,15 +298,15 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="books.html"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="authors.html"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <a href="customerlogin.html" class="login-btn">Login</a>
-                <a href="customersignup.html" class="signup-btn">Sign Up</a>
+                <a href="{% url 'login' %}" class="login-btn">Login</a>
+                <a href="{% url 'register' %}" class="signup-btn">Sign Up</a>
             </div>
         </div>
     </header>
@@ -319,23 +319,23 @@
                     
                     <div class="author-column">
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/jameswil.jpg" alt="James Wilson"></div>                        
+                            <div class="author-profile"><img src="../static/jameswil.jpg" alt="James Wilson"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">James Wilson</h3>
-                                <p class="author-department">Philosophy</p>
+                                <h3 class="author-name">James Edward</h3>
+                                <p class="author-department">Health & Science</p>
                                 <p class="author-nationality">British</p>
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/lizhang.jpg" alt="Li Zhang"></div>                        
+                            <div class="author-profile"><img src="../static/lizhang.jpg" alt="Li Zhang"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Li Zhang</h3>
+                                <h3 class="author-name">Li Wei</h3>
                                 <p class="author-department">Classics</p>
                                 <p class="author-nationality">Chinese</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/michael.jpg" alt="Michael Kiprop"></div>                        
+                            <div class="author-profile"><img src="../static/michael.jpg" alt="Michael Kiprop"></div>                        
                             <div class="author-info">
                                 <h3 class="author-name">Michael Kiprop</h3>
                                 <p class="author-department">Science</p>
@@ -343,18 +343,18 @@
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/lilian.jpg" alt="Lilian Langat"></div>                        
+                            <div class="author-profile"><img src="../static/lilian.jpg" alt="Lilian Langat"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Lilian Langat</h3>
+                                <h3 class="author-name">Lilian Chepkorir</h3>
                                 <p class="author-department">Crime</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/priya.jpg" alt="Priya Patel"></div>                        
+                            <div class="author-profile"><img src="../static/priya.jpg" alt="Priya Patel"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Priya Patel</h3>
-                                <p class="author-department">Sports</p>
+                                <h3 class="author-name">Priya Rani</h3>
+                                <p class="author-department">Philosophy</p>
                                 <p class="author-nationality">Indian</p>
                             </div>
                         </div>
@@ -363,42 +363,42 @@
         
                     <div class="author-column">
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/juan.jpg" alt="Juan Rodriguez"></div>                        
+                            <div class="author-profile"><img src="../static/juan.jpg" alt="Juan Rodriguez"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Juan Rodriguez</h3>
-                                <p class="author-department">Environment</p>
+                                <h3 class="author-name">Juan Carlos</h3>
+                                <p class="author-department">Adventure</p>
                                 <p class="author-nationality">Spanish</p>
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/abel.jpg" alt="Abel Tesfaye"></div>                        
+                            <div class="author-profile"><img src="../static/abel.jpg" alt="Abel Tesfaye"></div>                        
                             <div class="author-info">
                                 <h3 class="author-name">Abel Tesfaye</h3>
-                                <p class="author-department">Travel</p>
+                                <p class="author-department">Technology</p>
                                 <p class="author-nationality">Ethiopian</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/kwame.jpg" alt="Kwame Boateng"></div>                        
+                            <div class="author-profile"><img src="../static/kwame.jpg" alt="Kwame Boateng"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Kwame Boateng</h3>
+                                <h3 class="author-name">Kwame Nkrumah</h3>
                                 <p class="author-department">Business</p>
                                 <p class="author-nationality">Ghanaian</p>
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/aisha.jpg" alt="Aisha Ibrahim"></div>                        
+                            <div class="author-profile"><img src="../static/aisha.jpg" alt="Aisha Ibrahim"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Aisha Ibrahim</h3>
+                                <h3 class="author-name">Aisha Zainab</h3>
                                 <p class="author-department">Sci-Fi</p>
                                 <p class="author-nationality">Nigerian</p>
                             </div>
                         </div>
                          <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/fatima.jpg" alt="Fatima Benali"></div>                        
+                            <div class="author-profile"><img src="../static/fatima.jpg" alt="Fatima Benali"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Fatima Benali</h3>
-                                <p class="author-department">Children</p>
+                                <h3 class="author-name">Fatima Zahara</h3>
+                                <p class="author-department">Classic Romance</p>
                                 <p class="author-nationality">Morrocan</p>
                             </div>
                         </div>
@@ -407,39 +407,39 @@
         
                     <div class="author-column">
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/nadia.jpg" alt="Nadia Al-mansoori"></div>                        
+                            <div class="author-profile"><img src="../static/nadia.jpg" alt="Nadia Al-mansoori"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Nadia Al-mansoori</h3>
+                                <h3 class="author-name">Nadia Fatima</h3>
                                 <p class="author-department">Horror</p>
                                 <p class="author-nationality">Emirati</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/daniel.jpg" alt="Daniel Mensa"></div>                        
+                            <div class="author-profile"><img src="../static/daniel.jpg" alt="Daniel Mensa"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Daniel Mensa</h3>
+                                <h3 class="author-name">Daniel Kwabena</h3>
                                 <p class="author-department">History</p>
                                 <p class="author-nationality">Ghanaian</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/thomas.jpg" alt="Thomas shcmidt"></div>                        
+                            <div class="author-profile"><img src="../static/thomas.jpg" alt="Thomas shcmidt"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Thomas shcmidt</h3>
+                                <h3 class="author-name">Thomas Heinrich</h3>
                                 <p class="author-department">Mystery</p>
                                 <p class="author-nationality">German</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/aminajuma.jpg" alt="Amina Juma"></div>                        
+                            <div class="author-profile"><img src="../static/aminajuma.jpg" alt="Amina Juma"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Amina Juma</h3>
+                                <h3 class="author-name">Amina Naliaka</h3>
                                 <p class="author-department">Art</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/elena.jpg" alt="Elena Petrova"></div>                        
+                            <div class="author-profile"><img src="../static/elena.jpg" alt="Elena Petrova"></div>                        
                             <div class="author-info">
                                 <h3 class="author-name">Elena Petrova</h3>
                                 <p class="author-department">Biography</p>
@@ -451,41 +451,41 @@
         
                     <div class="author-column">
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/lucy.jpg" alt="Lucy Ongiel"></div>                        
+                            <div class="author-profile"><img src="../static/lucy.jpg" alt="Lucy Ongiel"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Lucy Ongiel</h3>
-                                <p class="author-department">Poetry</p>
+                                <h3 class="author-name">Lucy Wanjiru</h3>
+                                <p class="author-department">Fiction</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                        <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/esther.jpg" alt="Esther Atieno"></div>                        
+                            <div class="author-profile"><img src="../static/esther.jpg" alt="Esther Atieno"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Esther Atieno</h3>
+                                <h3 class="author-name">Esther Akinyi</h3>
                                 <p class="author-department">Cooking</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/joseph.jpg" alt="Joseph Ndung'u"></div>                        
+                            <div class="author-profile"><img src="../static/joseph.jpg" alt="Joseph Ndung'u"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Joseph Ndung'u</h3>
+                                <h3 class="author-name">Joseph Maina</h3>
                                 <p class="author-department">Romance</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/luka.jpg" alt="Luka Ricci"></div>                        
+                            <div class="author-profile"><img src="../static/luka.jpg" alt="Luka Ricci"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Luka Ricci</h3>
-                                <p class="author-department">Fantasy</p>
+                                <h3 class="author-name">Luka Matteo</h3>
+                                <p class="author-department">Crime Fiction</p>
                                 <p class="author-nationality">Italian</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/samuel.jpg" alt="Samuel Ngugi"></div>                        
+                            <div class="author-profile"><img src="../static/samuel.jpg" alt="Samuel Ngugi"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Samuel Ngugi</h3>
+                                <h3 class="author-name">Samuel Kariuki</h3>
                                 <p class="author-department">Thriller</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
@@ -495,42 +495,42 @@
 
                     <div class="author-column">
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/davidmwangi.jpg" alt="David Mwangi"></div>                        
+                            <div class="author-profile"><img src="../static/davidmwangi.jpg" alt="David Mwangi"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">David Mwangi</h3>
-                                <p class="author-department">Youth</p>
+                                <h3 class="author-name">David Kamu</h3>
+                                <p class="author-department">Romance</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/sicily.jpg" alt="Sicily Petronova"></div>                        
+                            <div class="author-profile"><img src="../static/sicily.jpg" alt="Sicily Petronova"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Sicily Petronova</h3>
+                                <h3 class="author-name">Sicily Anastacia</h3>
                                 <p class="author-department">Religion</p>
                                 <p class="author-nationality">Russian</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/joe.jpg" alt="Joe Kuriara"></div>                        
+                            <div class="author-profile"><img src="../static/joe.jpg" alt="Joe Kuriara"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Joe Kuriara</h3>
+                                <h3 class="author-name">Joe Mutahi</h3>
                                 <p class="author-department">Self-Help</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/luce.jpg" alt="Luce Khumalo"></div>                        
+                            <div class="author-profile"><img src="../static/luce.jpg" alt="Luce Khumalo"></div>                        
                             <div class="author-info">
-                                <h3 class="author-name">Luce Khumalo</h3>
-                                <p class="author-department">Technology</p>
+                                <h3 class="author-name">Luce Themba</h3>
+                                <p class="author-department">Environment</p>
                                 <p class="author-nationality">South African </p>
                             </div>
                         </div>
                         <div class="author-card">
-                            <div class="author-profile"><img src="../pictures/clide.jpg" alt="Clide Ngugi"></div>                        
+                            <div class="author-profile"><img src="../static/clide.jpg" alt="Clide Ngugi"></div>                        
                             <div class="author-info">
                                 <h3 class="author-name">Clide Ngugi</h3>
-                                <p class="author-department">Health</p>
+                                <p class="author-department">Travel</p>
                                 <p class="author-nationality">Kenyan</p>
                             </div>
                            </div>
@@ -556,24 +556,24 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="books.html"><i class="fas fa-chevron-right"></i> Books</a></li>
-                        <li><a href="authors.html"><i class="fas fa-chevron-right"></i> Authors</a></li>
+                        <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="{% url 'books' %}"><i class="fas fa-chevron-right"></i> Books</a></li>
+                        <li><a href="{% url 'authors' %}"><i class="fas fa-chevron-right"></i> Authors</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Account</h3>
                     <ul>
-                        <li><a href="customerlogin.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
-                        <li><a href="customersignup.html"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fas fa-chevron-right"></i> Customer Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 423 Book Avenue, Karen, Nairobi</li>
-                        <li><i class="fas fa-envelope"></i> info@mooneys.com</li>
+                        <li><i class="fas fa-envelope"></i> info@quillers.com</li>
                         <li><i class="fas fa-phone"></i> 0722537892</li>
                         <li><i class="fas fa-phone"></i> 0725784624</li>
                     </ul>

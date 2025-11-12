@@ -21,5 +21,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),           # For admin dashboard
-    path('', include('main.urls')),            # 👈 Connects your app's URLs
+    path('', include('main.urls')),            # Connects your app's URLs
 ]
