@@ -34,7 +34,6 @@ class Author(models.Model):
         db_table = 'author'
 
     def __str__(self):
-        # Display full name nicely
         return f"{self.fname} {self.lname}"
 
 

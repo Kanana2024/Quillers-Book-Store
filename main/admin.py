@@ -4,23 +4,23 @@ from .models import Customer, Author, Book, Inquiry, Branch, Order, OrderDetail,
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('custname', 'email', 'mobile', 'dob', 'gender')
-    search_fields = ('custname', 'email', 'mobile')
+    search_fields = ('custname', 'email', 'mobile','dob','gender')
 
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('fname', 'lname', 'email', 'mobile', 'nationality')
-    search_fields = ('fname', 'lname', 'email')
+    search_fields = ('fname', 'lname', 'email','mobile','nationality')
 
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('booktitle', 'author', 'genre', 'price', 'Publicationyear', 'stockavailable')
-    search_fields = ('booktitle', 'author__fname', 'author__lname')
+    search_fields = ('booktitle', 'author__fname', 'author__lname','Publicationyear','stockavailable','price')
     list_filter = ('genre', 'Publicationyear')
 
 
 class InquiryAdmin(admin.ModelAdmin):
     list_display = ('inqname', 'email', 'inqsubject', 'custid','isread')
-    search_fields = ('inqname', 'email', 'inqsubject')
+    search_fields = ('inqname', 'email', 'inqsubject','isread')
     readonly_fields = ('custid',)
     list_filter = ('isread',)
     list_editable = ('isread',)
@@ -28,21 +28,21 @@ class InquiryAdmin(admin.ModelAdmin):
 
 class BranchAdmin(admin.ModelAdmin):
     list_display = ('branchname', 'branchlocation', 'branchcountry', 'branchstatus')
-    search_fields = ('branchname', 'branchlocation', 'branchcountry')
+    search_fields = ('branchname', 'branchlocation', 'branchcountry','branchstatus')
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('orderid', 'orderdate', 'customer', 'totalamount', 'orderstatus', 'branch')
-    list_filter = ('orderstatus', 'orderdate')
+    list_filter = ('orderstatus', 'orderdate','customer','totalamount','orderstatus','branch')
     search_fields = ('customer__custname', 'branch__branchname')
 
 class OrderDetailAdmin(admin.ModelAdmin):
     list_display = ('order', 'book', 'quantity', 'price', 'paymentdetails')
-    search_fields = ('order__orderid', 'book__booktitle')
+    search_fields = ('order__orderid', 'book__booktitle','quantity','book')
 
 class StaffAdmin(admin.ModelAdmin):
     list_display = ('fullname', 'email', 'phone', 'branch', 'staffrole')
-    search_fields = ('fullname', 'email', 'staffrole')
+    search_fields = ('fullname', 'email', 'staffrole','branch','staffrole','phone')
 class SalesReportAdmin(admin.ModelAdmin):
     list_display = ('month', 'total_orders', 'total_sales')
     ordering = ('-month',)

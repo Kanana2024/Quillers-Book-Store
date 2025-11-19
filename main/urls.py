@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 # This list holds all the URL patterns (routes) for this app.
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
     path('customerlogin',views.login, name='login'),
     path('authors.html',views.authors,name='authors'),
     path('books/', views.book_search, name='book_search'),
-     path('inquiry/', views.inquiry, name='inquiry')
+    path('inquiry/', views.inquiry, name='inquiry'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout')
 ]

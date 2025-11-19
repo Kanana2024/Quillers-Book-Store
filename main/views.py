@@ -34,6 +34,10 @@ def login(request):
             messages.error(request, 'Invalid email or password.')
 
     return render(request, 'customerlogin.html')
+def logout_view(request):
+    request.session.flush()
+    messages.success(request, "You've been logged out successfully!")
+    return redirect('home')
 
 def inquiry(request):
     if request.method == 'POST':
