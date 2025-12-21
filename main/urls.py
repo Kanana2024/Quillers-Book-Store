@@ -12,5 +12,7 @@ urlpatterns = [
     path('authors.html',views.authors,name='authors'),
     path('books/', views.book_search, name='book_search'),
     path('inquiry/', views.inquiry, name='inquiry'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout')
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('add_to_cart/<int:book_id>/', views.add_to_cart, name='add_to_cart'),
+    path('cart/', views.cart_view, name='cart')
 ]
