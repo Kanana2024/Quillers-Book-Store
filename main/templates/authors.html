@@ -245,7 +245,36 @@
             font-size: 0.9rem;
             color: #e0f2fe;
         }
+                    .logout-btn {
+            background-color: white;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1.2rem;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
 
+        .logout-btn:hover {
+            background-color: #f3f4f6; 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.20);
+        }
+
+        .logout-btn i {
+            font-size: 1rem; 
+        }
+        .user-section {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        }
         @media (max-width: 1200px) {
             .books-container {
                 grid-template-columns: repeat(4, 1fr);
@@ -304,9 +333,22 @@
                     <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
-            <div class="auth-buttons">
-                <a href="{% url 'login' %}" class="login-btn">Login</a>
-                <a href="{% url 'register' %}" class="signup-btn">Sign Up</a>
+                <div class="auth-buttons">
+        {% if request.session.customer_name %}
+            <div class="user-section">
+                <span class="username">Hi, {{ request.session.customer_name }}</span>
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'register' %}" class="signup-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+        {% endif %}
             </div>
         </div>
     </header>

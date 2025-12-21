@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }venv\Scripts\activate
+        }
         
         body {
             background-color: #f8f9fa;
@@ -20,7 +20,7 @@
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -31,12 +31,18 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
+       /* .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        */
+        .header-container {
+            display: flex;
+            justify-content: space-between; /* Pushes Logo to left, Nav to center, Auth to right */
+            align-items: center;
+            padding: 0 20px;
+        }
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -51,11 +57,18 @@
             font-size: 1.5rem;
         }
 
-        nav ul {
+        /*nav ul {
             display: flex;
             list-style: none;
         }
-
+        */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem; /* This creates perfect, even space between your links */
+            margin: 0;
+            padding: 0;
+        }
 nav ul li {
     margin-left: 1.5rem;
 }
@@ -80,7 +93,11 @@ nav ul li a:hover {
     text-decoration: none;
     font-weight: 500;
 }
-
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Spacing between Login and Sign Up, or User Name and Logout */
+}
 .login-btn {
     color: white;
     border: 1px solid white;
@@ -252,13 +269,18 @@ nav ul li a:hover {
             align-items: center;
             gap: 14px;
         }
-
-        .username {
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Consistent gap between "Hi, User" and the Logout button */
+        }
+       /* .username {
             color: white;
             font-weight: 500;
             font-size: 1rem;
             margin-right: 17px;
         }
+        */
         .logout-btn {
         background-color: white;
         color: #1e3a8a;
@@ -268,7 +290,6 @@ nav ul li a:hover {
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.3s;
-        margin-right: -30px;
         }
 
         .logout-btn:hover {
@@ -314,8 +335,11 @@ nav ul li a:hover {
                 <span class="username">Hi, {{ request.session.customer_name }}</span>
                 <form action="{% url 'logout' %}" method="post" class="logout-form">
                     {% csrf_token %}
-                    <button type="submit" class="logout-btn">Logout</button>
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
                 </form>
+
             </div>
         {% else %}
             <a href="{% url 'login' %}" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>

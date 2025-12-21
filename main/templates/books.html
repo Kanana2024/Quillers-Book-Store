@@ -41,22 +41,26 @@
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .logo i {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
         
         nav ul {
             display: flex;
             list-style: none;
+            gap: 1.4rem;
+            flex-wrap: nowrap;
+            align-items: center;
+
         }
         
         nav ul li {
@@ -70,12 +74,19 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.3s;
+            gap: 6px;
+            display: flex;           
+            align-items: center;
+            gap: 6px;    
         }
         
         nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        
+        nav ul li a i {
+        line-height: 1;
+        }
+
         .auth-buttons a {
             margin-left: 1rem;
             padding: 0.5rem 1rem;
@@ -182,21 +193,21 @@
         }
 
         .buy-btn {
-    background-color: #bfdbfe;
-    color: #1e40af;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
+        background-color: #bfdbfe;
+        color: #1e40af;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;   
+        }
         footer {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: white;
@@ -254,58 +265,87 @@
         .social-icons a:hover {
             transform: translateY(-3px);
         }
+        
         .search-form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #fff;
-  border-radius: 30px;
-  padding: 0.4rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.search-form:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background: transparent;
-  padding: 0.5rem;
-  color: #333;
-}
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #fff;
+        border-radius: 30px;
+        padding: 0.4rem 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        }
+        .search-form:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .search-input {
+        flex: none;              
+        width: 100px;            
+        border: none;
+        outline: none;
+        font-size: 0.9rem;       
+        background: transparent;
+        color: #333;
+        padding: 0.3rem 0.4rem;
+        }
 
 .search-input::placeholder {
   color: #999;
 }
 
-.search-btn {
-  background: #2a72de;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 0.8rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
+      
+        .search-btn {
+        background: #2a72de;
+        border: none;
+        color: #fff;
+        padding: 0.5rem 0.8rem;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+        .search-btn:hover {
+        background: #1e56a0;
+        }
 
-.search-btn:hover {
-  background: #1e56a0;
-}
-
-.search-btn i {
-  font-size: 1rem;
-}
+        .search-btn i {
+        font-size: 1rem;
+        }
         .auth-buttons {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        }
+            .logout-btn {
+            background-color: white;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1.2rem;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
 
+        .logout-btn:hover {
+            background-color: #f3f4f6; 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.20);
+        }
+
+        .logout-btn i {
+            font-size: 1rem; 
+        }
+        .user-section {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        }
         @media (max-width: 1200px) {
             .books-container {
                 grid-template-columns: repeat(4, 1fr);
@@ -336,6 +376,9 @@
             
             .auth-buttons {
                 margin-top: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 1.2rem;  /* prevents squeezing */
             }
             
             .books-container {
@@ -359,20 +402,38 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About</a></li>
                     <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
                     <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
                 </ul>
             </nav>
-    <div class="auth-buttons">
+  <div class="auth-buttons">
        
-        <a href="#" class="login-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a href="#" class="login-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </a>
 
-        <form method="get" action="{% url 'book_search' %}" class="search-form">
+    <form method="get" action="{% url 'book_search' %}" class="search-form">
         <input type="text" name="q" placeholder="Search books..." class="search-input">
-        <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button type="submit" class="search-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    {% if request.session.customer_name %}
+    <div class="user-section">
+        <span class="username">Hi, {{ request.session.customer_name }}</span>
+
+        <form action="{% url 'logout' %}" method="post" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
         </form>
     </div>
+    {% endif %}
+</div>
+
 
         </div>
     </header>
@@ -679,7 +740,7 @@
                     <h3>Account</h3>
                     <ul>
                         <li><a href="{% url 'login' %}"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
-                        <li><a href="{% url 'register' %}"><i class="fas fa-chevron-right"></i> Sign Up</a></li>
+                        <li><a href="{% url 'register' %}"><i class="fas fa-chevron-right"></i>Customer Sign Up</a></li>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
