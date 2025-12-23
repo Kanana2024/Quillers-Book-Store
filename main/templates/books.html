@@ -409,10 +409,9 @@
             </nav>
   <div class="auth-buttons">
        
-    <a href="#" class="login-btn">
+    <a href="{% url 'cart' %}" class="login-btn">
         <i class="fa-solid fa-cart-shopping"></i>
     </a>
-
     <form method="get" action="{% url 'book_search' %}" class="search-form">
         <input type="text" name="q" placeholder="Search books..." class="search-input">
         <button type="submit" class="search-btn">

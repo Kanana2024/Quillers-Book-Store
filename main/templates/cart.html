@@ -131,7 +131,7 @@
                     {% if cart_items %}
                         {% for item in cart_items %}
                         <div class="cart-item">
-                            <img src="{{ item.book.image_url }}" alt="Book Cover">
+                            <img src="{% static item.book.image_url %}" alt="Book Cover">
                             <div class="item-info">
                                 <h3>{{ item.book.booktitle }}</h3>
                                 <p>By {{ item.book.author.fname }} {{ item.book.author.lname }}</p>
