@@ -133,9 +133,13 @@
                         <div class="cart-item">
                             <img src="{{ item.book.image_url }}" alt="Book Cover">
                             <div class="item-info">
-                                <h3>{{ item.book.title }}</h3>
-                                <p>By {{ item.book.author }}</p>
-                                <a href="#" class="remove-link"><i class="fas fa-trash-alt"></i> Remove</a>
+                                <h3>{{ item.book.booktitle }}</h3>
+                                <p>By {{ item.book.author.fname }} {{ item.book.author.lname }}</p>
+
+                                <a href="{% url 'remove_from_cart' item.book.bookid %}" class="remove-link">
+                                    <i class="fas fa-trash-alt"></i> Remove
+                                </a>
+
                             </div>
                             <div class="item-price">
                                 <strong>KSh {{ item.book.price }}</strong>
@@ -166,7 +170,7 @@
                         <span>Total</span>
                         <span>KSh {{ total_price }}</span>
                     </div>
-                    <button class="checkout-btn">Proceed to Checkout</button>
+                    <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
                     <p style="text-align: center; font-size: 0.8rem; color: #64748b; margin-top: 1rem;">
                         <i class="fas fa-lock"></i> Secure Payment by Quillers
                     </p>

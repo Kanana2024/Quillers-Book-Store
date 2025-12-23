@@ -2,14 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from django.db.models import Q
-
+from datetime import date
 from .forms import RegisterForm, InquiryForm
-from .models import (
-    Book,
-    Customer,
-    Cart,
-    CartItem
-)
+from .models import ( Book, Customer, Order, OrderDetail, Branch)
 
 # Helpers
 def get_logged_in_customer(request):
@@ -19,12 +14,10 @@ def get_logged_in_customer(request):
     return get_object_or_404(Customer, custid=custid)
 
 
-def get_cart(customer):
-    cart, created = Cart.objects.get_or_create(customer=customer)
-    return cart
+
 
 # Cart Views
-
+'''
 def add_to_cart(request, book_id):
     if request.method != 'POST':
         return redirect('books')
@@ -59,6 +52,141 @@ def cart_view(request):
 
     cart = get_cart(customer)
     return render(request, 'cart.html', {'cart': cart})
+'''
+
+def add_to_cart(request, book_id):
+    if request.method != "POST":
+        return redirect("books")
+
+    cart = request.session.get("cart", {})
+
+    book = get_object_or_404(Book, bookid=book_id)
+    book_id = str(book.bookid)
+
+    cart[book_id] = cart.get(book_id, 0) + 1
+
+    request.session["cart"] = cart
+    request.session.modified = True
+
+    messages.success(request, f"{book.booktitle} added to cart.")
+    return redirect("cart")
+def cart_view(request):
+    cart = request.session.get("cart", {})
+    books = Book.objects.filter(bookid__in=cart.keys())
+
+    cart_items = []
+    total = 0
+
+    for book in books:
+        qty = cart[str(book.bookid)]
+        subtotal = book.price * qty
+        total += subtotal
+
+        cart_items.append({
+            "book": book,
+            "quantity": qty,
+            "subtotal": subtotal
+        })
+
+    return render(request, "cart.html", {
+        "cart_items": cart_items,
+        "total": total
+    })
+def remove_from_cart(request, book_id):
+    customer = get_logged_in_customer(request)
+    if not customer:
+        messages.error(request, "Please log in to manage your cart.")
+        return redirect("login")
+
+    cart = request.session.get("cart", {})
+    book_id = str(book_id)
+
+    if book_id in cart:
+        del cart[book_id]
+        request.session["cart"] = cart
+        request.session.modified = True
+        messages.success(request, "Item removed from cart.")
+    else:
+        messages.error(request, "Item not found in cart.")
+
+    return redirect("cart")
+def clear_cart(request):
+    customer = get_logged_in_customer(request)
+    if not customer:
+        messages.error(request, "Please log in to manage your cart.")
+        return redirect("login")
+
+    request.session["cart"] = {}
+    request.session.modified = True
+    messages.success(request, "Cart cleared.")
+    return redirect("cart")
+
+'''
+def require_customer(request):
+    customer = get_logged_in_customer(request)
+    if not customer:
+        messages.error(request, "Please log in to proceed to checkout.")
+        return None
+    return customer
+'''
+
+def checkout(request):
+    customer = get_logged_in_customer(request)
+    if not customer:
+        messages.error(request, "Please log in to proceed to checkout.")
+        return redirect("login")
+
+    cart = request.session.get("cart", {})
+
+    if not cart:
+        messages.error(request, "Your cart is empty.")
+        return redirect("cart")
+
+    books = Book.objects.filter(bookid__in=cart.keys())
+
+    # calculate total
+    total = sum(
+        book.price * cart[str(book.bookid)]
+        for book in books
+    )
+
+    # choose branch (adjust if you have branch selection)
+    branch = Branch.objects.first()  # or however you determine branch
+
+    # create order
+    order = Order.objects.create(
+        orderdate=date.today(),
+        totalamount=total,
+        orderstatus="Pending",
+        deliveryaddress=customer.address if hasattr(customer, "address") else None,
+        branch=branch,
+        customer=customer
+    )
+
+    # create order details
+    for book in books:
+        qty = cart[str(book.bookid)]
+
+        OrderDetail.objects.create(
+            order=order,
+            book=book,
+            booktitle=book.booktitle,
+            quantity=qty,
+            price=book.price
+        )
+
+        # update stock
+        book.stockavailable -= qty
+        book.save()
+
+    # clear cart
+    request.session["cart"] = {}
+    request.session.modified = True
+
+    messages.success(request, "Order placed successfully.")
+    return redirect("cart")
+
+
 
 # Authentication
 
