@@ -137,54 +137,52 @@ def checkout(request):
         return redirect("login")
 
     cart = request.session.get("cart", {})
-
     if not cart:
         messages.error(request, "Your cart is empty.")
         return redirect("cart")
 
     books = Book.objects.filter(bookid__in=cart.keys())
 
-    # calculate total
-    total = sum(
-        book.price * cart[str(book.bookid)]
-        for book in books
-    )
+    total = sum(book.price * cart[str(book.bookid)] for book in books)
 
-    # choose branch (adjust if you have branch selection)
-    branch = Branch.objects.first()  # or however you determine branch
+    # ONLY place order when form is submitted
+    if request.method == "POST":
+        branch = Branch.objects.first()
 
-    # create order
-    order = Order.objects.create(
-        orderdate=date.today(),
-        totalamount=total,
-        orderstatus="Pending",
-        deliveryaddress=customer.address if hasattr(customer, "address") else None,
-        branch=branch,
-        customer=customer
-    )
-
-    # create order details
-    for book in books:
-        qty = cart[str(book.bookid)]
-
-        OrderDetail.objects.create(
-            order=order,
-            book=book,
-            booktitle=book.booktitle,
-            quantity=qty,
-            price=book.price
+        order = Order.objects.create(
+            orderdate=date.today(),
+            totalamount=total,
+            orderstatus="Pending",
+            deliveryaddress=request.POST.get("address"),
+            branch=branch,
+            customer=customer
         )
 
-        # update stock
-        book.stockavailable -= qty
-        book.save()
+        for book in books:
+            qty = cart[str(book.bookid)]
 
-    # clear cart
-    request.session["cart"] = {}
-    request.session.modified = True
+            OrderDetail.objects.create(
+                order=order,
+                book=book,
+                booktitle=book.booktitle,
+                quantity=qty,
+                price=book.price
+            )
 
-    messages.success(request, "Order placed successfully.")
-    return redirect("cart")
+            book.stockavailable -= qty
+            book.save()
+
+        del request.session["cart"]
+        request.session.modified = True
+        messages.success(request, "Order placed successfully.")
+        return redirect("cart")
+
+    # GET request just shows checkout page
+    return render(request, "checkout.html", {
+        "books": books,
+        "cart": cart,
+        "total": total
+    })
 
 
 

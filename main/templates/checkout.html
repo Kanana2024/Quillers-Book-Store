@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - Quillers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background:#f8f9fa; font-family:sans-serif; margin:0; }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width:1200px;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 20px;
+        }
+
+        .logo {
+            color:white;
+            text-decoration:none;
+            font-size:1.3rem;
+            font-weight:700;
+        }
+
+        nav ul {
+            list-style:none;
+            display:flex;
+            gap:20px;
+        }
+
+        nav ul li a {
+            color:white;
+            text-decoration:none;
+            font-size:0.95rem;
+        }
+    .checkout-wrapper {
+    max-width:650px;
+    margin:40px auto;
+    padding:40px;
+    background: url("{% static 'bkpage.jpg' %}") no-repeat center center;
+    background-size: cover;
+
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="{% url 'home' %}" class="logo">
+            <i class="fas fa-book-open"></i> Quillers Book Store
+        </a>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i>About</a></li>
+                <li><a href="{% url 'books' %}"><i class="fas fa-book"></i> Books</a></li>
+                <li><a href="{% url 'authors' %}"><i class="fas fa-pen-fancy"></i> Authors</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="checkout-wrapper">
+    <h2 style="color:#1e3a8a;">Checkout</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for item in cart_items %}
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e5e7eb; padding:10px 0;">
+                <span>{{ item.book.booktitle }} × {{ item.quantity }}</span>
+                <span>KSh {{ item.subtotal }}</span>
+            </div>
+        {% endfor %}
+
+        <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;">
+            <span>Total</span>
+            <span>KSh {{ total }}</span>
+        </div>
+
+        <div style="margin-top:20px;">
+            <label>House / Court</label>
+            <input type="text" name="house" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+        </div>
+
+        <div style="margin-top:15px;">
+            <label>Alternative Phone</label>
+            <input type="text" name="alt_phone" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+        </div>
+
+        <div style="margin-top:15px;">
+            <label>Nearest Town</label>
+            <input type="text" name="town" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+        </div>
+
+        <div style="margin-top:15px;">
+            <label>Delivery Location</label>
+            <input type="text" name="delivery_address" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+        </div>
+
+        <button type="submit"
+                style="width:100%; margin-top:25px; padding:12px; border:none; border-radius:50px;
+                       background:#1e3a8a; color:white; font-weight:600;">
+            Confirm Order
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
