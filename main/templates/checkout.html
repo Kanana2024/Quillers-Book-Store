@@ -3,9 +3,10 @@
 <html>
 <head>
     <title>Checkout - Quillers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background:#f8f9fa; font-family:sans-serif; margin:0; }
+        body { background:#f8f9fa;font-family: 'Poppins', sans-serif; margin:0; }
 
         header {
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
@@ -39,19 +40,26 @@
             text-decoration:none;
             font-size:0.95rem;
         }
-    .checkout-wrapper {
-    max-width:650px;
-    margin:40px auto;
-    padding:40px;
-    background: url("{% static 'bkpage.jpg' %}") no-repeat center center;
-    background-size: cover;
-
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-}
-
-
+        .container{
+            width: 80%;
+            margin: 50px auto;
+        }
+        .checkoutbox{
+            display: flex;
+        }
+        .checkleft{
+            flex-basis: 55%;
+            padding: 40px 60px;
+        }
+        .checkright{
+            flex-basis: 45%;
+            padding: 40px;
+            margin-top: 90px;
+        }
+        .text-card{
+                background-color: white;
+                padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -71,52 +79,51 @@
         </nav>
     </div>
 </header>
+    <div class="container">
+        <div class="checkoutbox">
 
-<div class="checkout-wrapper">
-    <h2 style="color:#1e3a8a;">Checkout</h2>
-
-    <form method="POST">
-        {% csrf_token %}
-
-        {% for item in cart_items %}
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e5e7eb; padding:10px 0;">
-                <span>{{ item.book.booktitle }} × {{ item.quantity }}</span>
-                <span>KSh {{ item.subtotal }}</span>
-            </div>
-        {% endfor %}
-
-        <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;">
-            <span>Total</span>
-            <span>KSh {{ total }}</span>
-        </div>
-
-        <div style="margin-top:20px;">
-            <label>House / Court</label>
-            <input type="text" name="house" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
-        </div>
-
-        <div style="margin-top:15px;">
-            <label>Alternative Phone</label>
-            <input type="text" name="alt_phone" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
-        </div>
-
-        <div style="margin-top:15px;">
-            <label>Nearest Town</label>
-            <input type="text" name="town" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
-        </div>
-
+            <div class="checkleft">
+                <h2 style="color:#1e3a8a;">Checkout</h2>
+                <div style="display:flex;max-width:490px; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;"></div>
+                <form method="POST">
+        
+        <h3 style="color:#1e3a8a;">Delivery</h5>
         <div style="margin-top:15px;">
             <label>Delivery Location</label>
-            <input type="text" name="delivery_address" required style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+            <input type="text" name="delivery_address" required style="width:80%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
         </div>
-
+        <h3 style="color:#1e3a8a; margin-bottom: 10px;">Payment</h5>
+        <p style="font-size: 13px;color:gray;">All transactions are secured and encrypted.</p>
+        <div class="text-card" style="line-height: 1.2;">
+            <p>Pay now via Mpesa Paybill</p>
+            <p>Go to Lipa na M-Pesa Paybill</p>
+            <p>Enter Business number 629531</p>
+            <p>Enter Account number 5899180 (KCB Paybill Acc for Quillers BookStore)</p>
+            <p>Enter the total amount ( including delivery Ksh 190)</p>
+            <p>IMPORTANT : After payment, you must press “Place Order” below and wait for order to go through.</p>
+        </div>
         <button type="submit"
                 style="width:100%; margin-top:25px; padding:12px; border:none; border-radius:50px;
                        background:#1e3a8a; color:white; font-weight:600;">
-            Confirm Order
+            Place Order
         </button>
     </form>
-</div>
+            </div>
+            <div class="checkright">
+                <span>Total</span>
+                <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;">          
+                    <div class="order-summary">
+                    {% for item in cart_items %}
+                        <div class="summary-row">
+                            <span>{{ item.book.booktitle }} × {{ item.quantity }}</span>
+                            <span>KSh {{ item.subtotal }}</span>
+                        </div>
+                    {% endfor %}
+                    <span>KSh {{ total }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
