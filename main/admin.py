@@ -35,14 +35,16 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('orderid', 'orderdate', 'customer', 'totalamount', 'orderstatus', 'branch')
     list_filter = ('orderstatus', 'orderdate','customer','totalamount','orderstatus','branch')
     search_fields = ('customer__custname', 'branch__branchname')
+    readonly_fields = ('orderid','orderdate','customer','totalamount')
 
 class OrderDetailAdmin(admin.ModelAdmin):
     list_display = ('order', 'book', 'quantity', 'price', 'paymentdetails')
-    search_fields = ('order__orderid', 'book__booktitle','quantity','book')
-
+    search_fields = ('order__orderid', 'book__booktitle', 'paymentdetails')
+    readonly_fields = ('order', 'price')
 class StaffAdmin(admin.ModelAdmin):
     list_display = ('fullname', 'email', 'phone', 'branch', 'staffrole')
-    search_fields = ('fullname', 'email', 'staffrole','branch','staffrole','phone')
+    search_fields = ('fullname', 'email', 'staffrole', 'branch__branchname', 'phone')
+
 class SalesReportAdmin(admin.ModelAdmin):
     list_display = ('month', 'total_orders', 'total_sales')
     ordering = ('-month',)

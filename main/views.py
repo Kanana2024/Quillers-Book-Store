@@ -130,7 +130,7 @@ def require_customer(request):
     return customer
 '''
 
-def checkout(request):
+''' def checkout(request):
     customer = get_logged_in_customer(request)
     if not customer:
         messages.error(request, "Please log in to proceed to checkout.")
@@ -153,7 +153,7 @@ def checkout(request):
             orderdate=date.today(),
             totalamount=total,
             orderstatus="Pending",
-            deliveryaddress=request.POST.get("address"),
+            deliveryaddress=request.POST.get("delivery_address"),
             branch=branch,
             customer=customer
         )
@@ -181,9 +181,81 @@ def checkout(request):
     return render(request, "checkout.html", {
         "books": books,
         "cart": cart,
-        "total": total
+        "total": total,
+        "branch": branch,
     })
+'''
+def checkout(request):
+    customer = get_logged_in_customer(request)
+    if not customer:
+        messages.error(request, "Please log in to proceed to checkout.")
+        return redirect("login")
 
+    cart = request.session.get("cart", {})
+    if not cart:
+        messages.error(request, "Your cart is empty.")
+        return redirect("cart")
+
+    books = Book.objects.filter(bookid__in=cart.keys())
+
+    cart_items = []
+    total = 0
+    for book in books:
+        qty = cart[str(book.bookid)]
+        subtotal = book.price * qty
+        total += subtotal
+        cart_items.append({
+            "book": book,
+            "quantity": qty,
+            "subtotal": subtotal
+        })
+
+    # DEFINE BEFORE GET
+    branches = Branch.objects.all()
+
+    # -------- DISPLAY CHECKOUT PAGE --------
+    if request.method == "GET":
+        return render(request, "checkout.html", {
+            "cart_items": cart_items,
+            "total": total,
+            "branches": branches
+        })
+
+    # -------- PROCESS ORDER --------
+    branch_id = request.POST.get("branch_id")
+    delivery_address = request.POST.get("delivery_address")
+    
+
+
+    branch = get_object_or_404(Branch, branchid=branch_id)
+
+    order = Order.objects.create(
+        orderdate=date.today(),
+        totalamount=total,
+        orderstatus="Pending",
+        deliveryaddress=delivery_address,
+        branch=branch,
+        customer=customer
+    )
+    delivery_method = request.POST.get("delivery_method")
+    for item in cart_items:
+        OrderDetail.objects.create(
+            order=order,
+            book=item["book"],
+            booktitle=item["book"].booktitle,
+            quantity=item["quantity"],
+            price=item["book"].price,
+            paymentdetails=delivery_method
+        )
+
+        item["book"].stockavailable -= item["quantity"]
+        item["book"].save()
+
+    request.session["cart"] = {}
+    request.session.modified = True
+
+    messages.success(request, "Order placed successfully.")
+    return redirect("home")
 
 
 # Authentication

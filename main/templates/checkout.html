@@ -46,6 +46,7 @@
         }
         .checkoutbox{
             display: flex;
+            margin-top: -70px;
         }
         .checkleft{
             flex-basis: 55%;
@@ -59,6 +60,11 @@
         .text-card{
                 background-color: white;
                 padding: 20px;
+        }
+        form{
+            select{
+                font-size: 15px;
+            }
         }
     </style>
 </head>
@@ -80,50 +86,90 @@
     </div>
 </header>
     <div class="container">
-        <div class="checkoutbox">
+    <div class="checkoutbox">
 
-            <div class="checkleft">
-                <h2 style="color:#1e3a8a;">Checkout</h2>
-                <div style="display:flex;max-width:490px; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;"></div>
-                <form method="POST">
-        
-        <h3 style="color:#1e3a8a;">Delivery</h5>
-        <div style="margin-top:15px;">
-            <label>Delivery Location</label>
-            <input type="text" name="delivery_address" required style="width:80%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
-        </div>
-        <h3 style="color:#1e3a8a; margin-bottom: 10px;">Payment</h5>
-        <p style="font-size: 13px;color:gray;">All transactions are secured and encrypted.</p>
-        <div class="text-card" style="line-height: 1.2;">
-            <p>Pay now via Mpesa Paybill</p>
-            <p>Go to Lipa na M-Pesa Paybill</p>
-            <p>Enter Business number 629531</p>
-            <p>Enter Account number 5899180 (KCB Paybill Acc for Quillers BookStore)</p>
-            <p>Enter the total amount ( including delivery Ksh 190)</p>
-            <p>IMPORTANT : After payment, you must press “Place Order” below and wait for order to go through.</p>
-        </div>
-        <button type="submit"
-                style="width:100%; margin-top:25px; padding:12px; border:none; border-radius:50px;
-                       background:#1e3a8a; color:white; font-weight:600;">
-            Place Order
-        </button>
-    </form>
-            </div>
-            <div class="checkright">
-                <span>Total</span>
-                <div style="display:flex; justify-content:space-between; font-weight:700; color:#1e3a8a; padding-top:15px; border-top:2px solid #1e3a8a; margin-top:15px;">          
-                    <div class="order-summary">
-                    {% for item in cart_items %}
-                        <div class="summary-row">
-                            <span>{{ item.book.booktitle }} × {{ item.quantity }}</span>
-                            <span>KSh {{ item.subtotal }}</span>
-                        </div>
-                    {% endfor %}
-                    <span>KSh {{ total }}</span>
+        <!-- LEFT SIDE -->
+        <div class="checkleft">
+            <h2 style="color:#1e3a8a;">Checkout</h2>
+            <div style="max-width:490px; border-top:2px solid #1e3a8a; margin:15px 0;"></div>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <h3 style="color:#1e3a8a;">Delivery</h3>
+                 <div style="margin-top:15px;">
+                    <label>Choose Branch</label>
+                    <select name="branch_id" required
+                            style="width:80%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+                        {% for branch in branches %}
+                            <option value="{{ branch.branchid }}">
+                                {{ branch.branchname }}
+                            </option>
+                        {% endfor %}
+                        </select>
                 </div>
+                <div style="margin-top:15px;">
+                    <label>Delivery Location</label>
+                    <input type="text" name="delivery_address" required
+                           style="width:80%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+                </div>
+
+                <h3 style="color:#1e3a8a;">Payment</h3>
+                <label style="font-weight:600;">Delivery Method</label>
+
+                <div style="margin-top:10px;">
+                    <label>
+                        <input type="radio" name="delivery_method" value="pickup" required>
+                        Pick up from branch
+                    </label>
+                </div>
+
+                <div style="margin-top:8px;padding-bottom: 12px;">
+                    <label>
+                        <input type="radio" name="delivery_method" value="delivery">
+                        Home delivery (KSh 190)
+                    </label>
+                </div>
+
+                <div class="text-card" style="line-height:1.4; padding:12px; border:1px solid #e5e7eb;">
+                    <p>Pay via M-Pesa Paybill</p>
+                    <p>Business Number: <strong>629531</strong></p>
+                    <p>Account Number: <strong>5899180</strong></p>
+                    <p>Amount: <strong>KSh {{ total }}</strong></p>
+                    <p style="margin-top:8px; font-size:14px;">
+                        After payment, press “Place Order” and wait for confirmation.
+                    </p>
+                </div>
+
+                <button type="submit"
+                        style="width:100%; margin-top:25px; padding:12px; border:none; border-radius:50px;
+                               background:#1e3a8a; color:white; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="checkright">
+            <h3 style="color:#1e3a8a;">Order Summary</h3>
+
+            {% for item in cart_items %}
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <span>{{ item.book.booktitle }} × {{ item.quantity }}</span>
+                    <span>KSh {{ item.subtotal }}</span>
+                </div>
+            {% endfor %}
+
+            <div style="display:flex; justify-content:space-between;
+                        font-weight:700; color:#1e3a8a;
+                        border-top:2px solid #1e3a8a; margin-top:15px; padding-top:10px;">
+                <span>Total</span>
+                <span>KSh {{ total }}</span>
             </div>
         </div>
+
     </div>
+</div>
 
 </body>
 </html>
